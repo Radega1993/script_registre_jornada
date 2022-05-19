@@ -14,9 +14,9 @@ RUN apk add --update --no-cache --virtual .build-deps \
     libxslt-dev \
     chromium
 
-RUN pip install -r requirements.txt
 
 
 COPY . /app
 WORKDIR /app
+RUN pip install -r requirements.txt
 CMD python registre_jornada/app.py

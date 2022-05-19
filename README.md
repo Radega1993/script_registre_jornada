@@ -46,3 +46,13 @@ inicioc_4 = "14:30"
 finalc_4 = "17:00"
 final_4 = "20:30"
 ```
+
+# Build image
+```
+docker build -t auto_registre .
+```
+
+# Lanzar imagen
+```
+docker run -d -p 80:80 auto_registre:latest
+```

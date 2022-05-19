@@ -11,9 +11,10 @@ RUN apk add --update --no-cache --virtual .build-deps \
     libffi-dev \
     openssl-dev \
     libxml2-dev \
-    libxslt-dev
+    libxslt-dev \
+    chromium
 
-RUN pip install beautifulsoup4 lxml requests python-dateutil
+RUN pip install -r requirements.txt
 
 
 COPY . /app

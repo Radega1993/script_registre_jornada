@@ -14,8 +14,6 @@ RUN apk add --update --no-cache --virtual .build-deps \
     libxslt-dev \
     chromium
 
-
-
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt

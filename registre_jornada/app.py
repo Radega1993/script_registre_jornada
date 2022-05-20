@@ -3,7 +3,7 @@ from selenium.webdriver.common.by import By
 from dotenv import load_dotenv
 from datetime import datetime, date
 
-import os 
+import os
 import webbrowser
 import time
 
@@ -11,7 +11,7 @@ import time
 
 def login(driver):
 	load_dotenv()
-		
+
 	driver.get("https://app.evertime.es/pages/login")
 	driver.find_element(By.ID, "ocode").send_keys(os.environ.get('codigo_centro'))
 	driver.find_element(By.ID, "account").send_keys(os.environ.get('username'))
@@ -20,14 +20,16 @@ def login(driver):
 	button = driver.find_element(By.ID, "blogin")
 	button.click()
 	time.sleep(5)
+	print("login ok")
 
 def inicio_jornada(driver):
 	login(driver)
-	
+
 	button = driver.find_element(by=By.CSS_SELECTOR, value="button.buttonfichaje")
 	button.click()
 	time.sleep(5)
 	driver.close();
+	print("inicio jornada ok")
 
 def inicio_comida(driver):
 	login(driver)
@@ -38,6 +40,7 @@ def inicio_comida(driver):
 	submitLoginButton = driver.find_element(By.XPATH, '//i[text()="fastfood"]/ancestor::button')
 	submitLoginButton.click()
 	time.sleep(5)
+	print("inicio comida ok")
 
 def final_comida(driver):
 	login(driver)
@@ -45,13 +48,15 @@ def final_comida(driver):
 	button = driver.find_element(by=By.CSS_SELECTOR, value="button.btn-success")
 	button.click()
 	time.sleep(5)
+	print("final comida ok")
 
 def final_jornada(driver):
 	login(driver)
-	
+
 	button = driver.find_element(by=By.CSS_SELECTOR, value="button.btn-danger")
 	button.click()
 	time.sleep(5)
+	print("final jornada ok")
 
 def cargar_horario(today):
 	load_dotenv()
@@ -62,15 +67,11 @@ def cargar_horario(today):
 	return inicio_jornada, inicio_comida, final_comida, final_jornada
 
 def main():
-	#driver = webdriver.Chrome()
-	#inicio_jornada(driver)
-	#inicio_comida(driver)
 
-	 
+
 	if (datetime.today().weekday() != 5) and (datetime.today().weekday() != 6):
 		today = datetime.today().weekday()
 		inicio_jornada, inicio_comida, final_comida, final_jornada = cargar_horario(today)
-		
 		now = datetime.now()
 		current_time = now.strftime("%H:%M")
 
@@ -79,7 +80,7 @@ def main():
 				driver = webdriver.Chrome()
 				login(driver)
 				inicio_jornada(driver)
-		
+
 		if str(inicio_jornada) != "no":
 			if str(current_time) == str(inicio_jornada):
 				driver = webdriver.Chrome()
@@ -101,5 +102,3 @@ def main():
 while True:
 	main()
 	time.sleep(60)
-
-

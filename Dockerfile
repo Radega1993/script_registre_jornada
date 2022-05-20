@@ -1,18 +1,9 @@
-FROM python:3.7-alpine
-
+FROM python:3.8
+USER root
 RUN mkdir /install
 WORKDIR /install
 
 COPY requirements.txt /requirements.txt
-
-RUN apk add --update --no-cache --virtual .build-deps \
-    gcc \
-    build-base \
-    libffi-dev \
-    openssl-dev \
-    libxml2-dev \
-    libxslt-dev \
-    chromium
 
 COPY . /app
 WORKDIR /app

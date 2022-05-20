@@ -11,7 +11,13 @@ import time
 
 def login(driver):
 	load_dotenv()
-
+	options = webdriver.ChromeOptions()
+	options.add_argument('--ignore-ssl-errors=yes')
+	options.add_argument('--ignore-certificate-errors')
+	driver = webdriver.Remote(
+	command_executor='http://localhost:4444/wd/hub',
+	options=options
+	)
 	driver.get("https://app.evertime.es/pages/login")
 	driver.find_element(By.ID, "ocode").send_keys(os.environ.get('codigo_centro'))
 	driver.find_element(By.ID, "account").send_keys(os.environ.get('username'))

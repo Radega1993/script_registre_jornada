@@ -6,7 +6,7 @@ from datetime import datetime, date
 import os
 import webbrowser
 import time
-
+import logging
 
 
 def login(driver):
@@ -26,7 +26,7 @@ def login(driver):
 	button = driver.find_element(By.ID, "blogin")
 	button.click()
 	time.sleep(5)
-	print("login ok")
+	logging.warning('Login ok')
 
 def inicio_jornada(driver):
 	login(driver)
@@ -35,7 +35,7 @@ def inicio_jornada(driver):
 	button.click()
 	time.sleep(5)
 	driver.close();
-	print("inicio jornada ok")
+	logging.warning("Inicio jornada ok")
 
 def inicio_comida(driver):
 	login(driver)
@@ -46,7 +46,7 @@ def inicio_comida(driver):
 	submitLoginButton = driver.find_element(By.XPATH, '//i[text()="fastfood"]/ancestor::button')
 	submitLoginButton.click()
 	time.sleep(5)
-	print("inicio comida ok")
+	logging.warning("Inicio comida ok")
 
 def final_comida(driver):
 	login(driver)
@@ -54,7 +54,7 @@ def final_comida(driver):
 	button = driver.find_element(by=By.CSS_SELECTOR, value="button.btn-success")
 	button.click()
 	time.sleep(5)
-	print("final comida ok")
+	logging.warning("Final comida ok")
 
 def final_jornada(driver):
 	login(driver)
@@ -62,7 +62,7 @@ def final_jornada(driver):
 	button = driver.find_element(by=By.CSS_SELECTOR, value="button.btn-danger")
 	button.click()
 	time.sleep(5)
-	print("final jornada ok")
+	logging.warning("Final jornada ok") 
 
 def cargar_horario(today):
 	load_dotenv()

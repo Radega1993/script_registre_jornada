@@ -87,20 +87,20 @@ def main():
 				login(driver)
 				inicio_jornada(driver)
 
-		if str(inicio_jornada) != "no":
-			if str(current_time) == str(inicio_jornada):
+		if str(inicio_comida) != "no":
+			if str(current_time) == str(inicio_comida):
 				driver = webdriver.Chrome()
 				login(driver)
 				inicio_comida(driver)
 
-		if str(inicio_jornada) != "no":
-			if str(current_time) == str(inicio_jornada):
+		if str(final_comida) != "no":
+			if str(current_time) == str(final_comida):
 				driver = webdriver.Chrome()
 				login(driver)
 				final_comida(driver)
 
-		if str(inicio_jornada) != "no":
-			if str(current_time) == str(inicio_jornada):
+		if str(final_jornada) != "no":
+			if str(current_time) == str(final_jornada):
 				driver = webdriver.Chrome()
 				login(driver)
 				final_jornada(driver)

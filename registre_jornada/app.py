@@ -64,7 +64,7 @@ def cargar_horario(today):
 	inicio_comida = os.environ.get('inicioc_'+str(today))
 	final_comida = os.environ.get('finalc_'+str(today))
 	final_jornada = os.environ.get('final_'+str(today))
-	hora_test = "15:19"
+	hora_test = "15:27"
 	return inicio_jornada, inicio_comida, final_comida, final_jornada, hora_test
 
 

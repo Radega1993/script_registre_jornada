@@ -1,11 +1,13 @@
 FROM python:3.6.8-stretch
 
+RUN mkdir /install
+WORKDIR /install
+
 RUN apt update && apt install -y gdebi-core libnss3 libgconf-2-4
 COPY google-chrome-stable_current_amd64.deb .
 RUN gdebi -n google-chrome-stable_current_amd64.deb
 
-RUN mkdir /install
-WORKDIR /install
+
 
 COPY requirements.txt /requirements.txt
 

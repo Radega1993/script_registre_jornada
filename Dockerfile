@@ -9,7 +9,7 @@ WORKDIR /install
 
 COPY requirements.txt /requirements.txt
 
-ADD chromedriver .
+COPY chromedriver .
 RUN chmod +x chromedriver
 
 COPY . /app

@@ -76,6 +76,12 @@ def main():
 		now = datetime.now()
 		current_time = now.strftime("%H:%M")
 
+		if str(hora_test) != "no":
+			if str(current_time) == str(hora_test):
+				logging.warning('ENTRA OK')
+				driver = webdriver.Chrome()
+				login(driver)
+
 		if str(inicio_jornada) != "no":
 			if str(current_time) == str(inicio_jornada):
 				driver = webdriver.Chrome()

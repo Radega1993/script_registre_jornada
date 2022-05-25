@@ -11,13 +11,7 @@ import logging
 
 def login(driver):
 	load_dotenv()
-	options = webdriver.ChromeOptions()
-	options.add_argument('--ignore-ssl-errors=yes')
-	options.add_argument('--ignore-certificate-errors')
-	driver = webdriver.Remote(
-	command_executor='http://localhost:4444/wd/hub',
-	options=options
-	)
+
 	driver.get("https://app.evertime.es/pages/login")
 	driver.find_element(By.ID, "ocode").send_keys(os.environ.get('codigo_centro'))
 	driver.find_element(By.ID, "account").send_keys(os.environ.get('username'))
@@ -62,7 +56,7 @@ def final_jornada(driver):
 	button = driver.find_element(by=By.CSS_SELECTOR, value="button.btn-danger")
 	button.click()
 	time.sleep(5)
-	logging.warning("Final jornada ok") 
+	logging.warning("Final jornada ok")
 
 def cargar_horario(today):
 	load_dotenv()
@@ -70,14 +64,15 @@ def cargar_horario(today):
 	inicio_comida = os.environ.get('inicioc_'+str(today))
 	final_comida = os.environ.get('finalc_'+str(today))
 	final_jornada = os.environ.get('final_'+str(today))
-	return inicio_jornada, inicio_comida, final_comida, final_jornada
+	hora_test = "15:19"
+	return inicio_jornada, inicio_comida, final_comida, final_jornada, hora_test
+
 
 def main():
 
-
 	if (datetime.today().weekday() != 5) and (datetime.today().weekday() != 6):
 		today = datetime.today().weekday()
-		inicio_jornada, inicio_comida, final_comida, final_jornada = cargar_horario(today)
+		inicio_jornada, inicio_comida, final_comida, final_jornada, hora_test = cargar_horario(today)
 		now = datetime.now()
 		current_time = now.strftime("%H:%M")
 

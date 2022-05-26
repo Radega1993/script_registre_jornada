@@ -1,20 +1,21 @@
-FROM python:3.6.8-stretch
-
+FROM python:3.7-alpine
 RUN mkdir /install
 WORKDIR /install
-
-RUN apt update && apt install -y gdebi-core libnss3 libgconf-2-4
-COPY google-chrome-stable_current_amd64.deb .
-RUN gdebi -n google-chrome-stable_current_amd64.deb
-
-
-
 COPY requirements.txt /requirements.txt
+RUN apk add --update --no-cache --virtual .build-deps \
+    gcc \
+    build-base \
+    libffi-dev \
+    openssl-dev \
+    libxml2-dev \
+    libxslt-dev \
+    chromium
 
-COPY chromedriver .
-RUN chmod +x chromedriver
+RUN pip install beautifulsoup4 lxml requests python-dateutil
+
+
 
 COPY . /app
 WORKDIR /app
 RUN pip install -r requirements.txt
-CMD ["python", "registre_jornada/app.py"]
+CMD python registre_jornada/app.py

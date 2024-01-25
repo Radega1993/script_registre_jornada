@@ -1,15 +1,18 @@
-FROM python:3.7-alpine
+# Utiliza una imagen de Python más ligera como base
+FROM python:3.7-slim
 
-# Instalación de dependencias necesarias para Python y Chrome/Chromedriver
-RUN apk add --update --no-cache \
+# Instalación de dependencias necesarias para Chrome/Chromedriver
+RUN apt-get update && apt-get install -y \
     chromium \
-    chromium-chromedriver \
+    chromium-driver \
     libffi-dev \
-    openssl-dev \
+    libssl-dev \
     libxml2-dev \
     libxslt-dev \
     gcc \
-    build-base
+    build-essential \
+ && apt-get clean \
+ && rm -rf /var/lib/apt/lists/*
 
 # Copiar los archivos del proyecto al contenedor
 COPY . /app

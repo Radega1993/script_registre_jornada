@@ -1,58 +1,57 @@
-# auto_registe_jornada
-script para registrar la jornada de forma automatica
+# Auto_Registre_Jornada
 
-```
-python -m venv myvenv
-source myvenv/bin/activate
-pip install -r requirements.txt
-deactivate
-```
+Script para registrar la jornada de forma automática.
 
-# Ejemplo de .env
-```
-#inside file named .env
+## Ejecución Local
+
+Para ejecutar este script en tu entorno local, sigue estos pasos:
+
+1. **Crear un Entorno Virtual**:
+
+    ```bash
+    python -m venv myvenv
+    ```
+
+2. **Activar el Entorno Virtual**:
+
+    - Windows:
+
+      ```cmd
+      myvenv\Scripts\activate
+      ```
+
+    - macOS/Linux:
+
+      ```bash
+      source myvenv/bin/activate
+      ```
+
+3. **Instalar Dependencias**:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+4. **Ejecutar el Script**:
+
+    ```bash
+    python registre_jornada/app.py
+    ```
+
+5. **Desactivar el Entorno Virtual** (cuando hayas terminado):
+
+    ```bash
+    deactivate
+    ```
+
+## Configuración del archivo .env
+
+Crea un archivo `.env` en el directorio raíz con la siguiente estructura:
+
+```env
+# dentro del archivo llamado .env
 
 codigo_centro = "xxxxxxxxxxx"
 username = "xxxxxxxxxxxx"
 password = "xxxxxxxxxxxxx"
-
-# lunes
-inicio_0 = "8:00"
-inicioc_0 = "13:30"
-finalc_0 = "17:00"
-final_0 = "20:30"
-
-# martes
-inicio_1 = "11:30"
-inicioc_1 = "no"
-finalc_1 =  "no"
-final_1 = "13:30"
-
-# miercoles
-inicio_2 = "10:00"
-inicioc_2 = "14:30"
-finalc_2 = "15:00"
-final_2 = "17:00"
-
-# jueves
-inicio_3 = "8:00"
-inicioc_3 = "no"
-finalc_3 = "no"
-final_3 = "13:30"
-
-# viernes
-inicio_4 = "8:00"
-inicioc_4 = "14:30"
-finalc_4 = "17:00"
-final_4 = "20:30"
-```
-
-# Build image
-```
-docker build -t auto_registre .
-```
-
-# Lanzar imagen
-```
-docker run -d -p 80:80 auto_registre:latest
-```
+# ... (resto del contenido)

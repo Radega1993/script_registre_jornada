@@ -1,21 +1,22 @@
 FROM python:3.7-alpine
-RUN mkdir /install
-WORKDIR /install
-COPY requirements.txt /requirements.txt
-RUN apk add --update --no-cache --virtual .build-deps \
-    gcc \
-    build-base \
+
+# Instalación de dependencias necesarias para Python y Chrome/Chromedriver
+RUN apk add --update --no-cache \
+    chromium \
+    chromium-chromedriver \
     libffi-dev \
     openssl-dev \
     libxml2-dev \
     libxslt-dev \
-    chromium
+    gcc \
+    build-base
 
-RUN pip install beautifulsoup4 lxml requests python-dateutil
-
-
-
+# Copiar los archivos del proyecto al contenedor
 COPY . /app
 WORKDIR /app
+
+# Instalación de las dependencias de Python
 RUN pip install -r requirements.txt
-CMD python registre_jornada/app.py
+
+# Comando para ejecutar el script
+CMD ["python", "registre_jornada/app.py"]

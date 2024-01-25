@@ -1,8 +1,6 @@
 version: "3"
 services:
   script_auto_register:
-    build:
-      context: .
-      dockerfile: Dockerfile
+    build: .
     env_file:
       - .env

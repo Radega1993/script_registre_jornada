@@ -1,5 +1,5 @@
 # Utiliza una imagen de Python más ligera como base
-FROM python:3.7-slim
+FROM python:3.7-slim-buster
 
 # Instalación de dependencias necesarias para Chrome/Chromedriver
 RUN apt-get update && apt-get install -y \
@@ -12,7 +12,8 @@ RUN apt-get update && apt-get install -y \
     gcc \
     build-essential \
  && apt-get clean \
- && rm -rf /var/lib/apt/lists/*
+ && rm -rf /var/lib/apt/lists/* \
+ && rm -rf /tmp/*
 
 # Copiar los archivos del proyecto al contenedor
 COPY . /app

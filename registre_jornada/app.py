@@ -78,7 +78,7 @@ def inicio_comida(driver):
         submitLoginButton = driver.find_element(By.XPATH, '//i[text()="fastfood"]/ancestor::button')
         submitLoginButton.click()
         time.sleep(5)
-        logging.warning("Inicio comida ok")
+        logging.info("Inicio comida ok")
     except WebDriverException as e:
         logging.error(f"Error during inicio comida (second click): {e}")
 
@@ -127,9 +127,7 @@ def main():
                 executed_actions[action_key] = weekday
             else:
                 logging.info(f"Action {action_name} already executed for today")
-        else:
-            logging.info(f"No action scheduled for {current_time} or already executed")
-
+        
 if __name__ == "__main__":
     logging.info("Starting Auto Registre Jornada script")
     while True:
